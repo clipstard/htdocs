@@ -1,11 +1,12 @@
 <?php
-	if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
-		$uri = 'https://';
-	} else {
-		$uri = 'http://';
-	}
-	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/dashboard/');
-	exit;
-?>
-Something is wrong with the XAMPP installation :-(
+
+    session_start();
+    $mysqli = mysqli_connect('localhost', 'root', null);
+
+    if (!!$mysqli) {
+        $query = $mysqli->query('CREATE DATABASE admin');
+        $_SESSION['databases'] = ['admin'];
+    }
+
+    $_SESSION['selected_db'] = 'admin';
+    $mysqli->select_db('admin');
