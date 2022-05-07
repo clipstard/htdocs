@@ -1,0 +1,15 @@
+.input-group-prepend {
+    display: flex;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.contrast-table tr:nth-child(even){
+    background-color: var(--bs-gray-300);
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
