@@ -1,12 +1,21 @@
 <?php
 
     session_start();
-    $mysqli = mysqli_connect('localhost', 'root', null);
+    $mysqli = mysqli_connect('localhost', 'root', '');
+$str = 'existent databases: ';
 
-    if (!!$mysqli) {
-        $query = $mysqli->query('CREATE DATABASE admin');
-        $_SESSION['databases'] = ['admin'];
+    if (!$mysqli) {
+        return;
     }
+         $db = $mysqli->query('SHOW DATABASES;');
+         $results = $db->fetch_array();
+         $str .= implode(', ', $results);
 
-    $_SESSION['selected_db'] = 'admin';
-    $mysqli->select_db('admin');
+//        $query = $mysqli->query('CREATE DATABASE admin');
+//        $_SESSION['databases'] = ['admin'];
+
+//    $_SESSION['selected_db'] = 'admin';
+//    $mysqli->select_db('admin');
+
+echo $str;
+    mysqli_close($mysqli);
